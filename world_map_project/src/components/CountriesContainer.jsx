@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-
 import CountryCard from "./CountryCard";
+import CountriesContainerShimmer from "./CountriesContainerShimmer";
+
 const CountriesContainer = ({ query }) => {
   const [countriesData, setCountriesData] = useState([]);
 
@@ -10,22 +11,32 @@ const CountriesContainer = ({ query }) => {
       .then((data) => setCountriesData(data));
   }, []);
   return (
-    <div className="countries-container">
-      {countriesData
-        .filter((country) => country.name.common.toLowerCase().includes(query))
-        .map((country, index) => {
-          return (
-            <CountryCard
-              key={index}
-              name={country.name.common}
-              flags={country.flags.png}
-              population={country.population.toLocaleString("en-IN")}
-              region={country.region}
-              capital={country.capital?.[0]}
-            ></CountryCard>
-          );
-        })}
-    </div>
+    <>
+      {!countriesData.length ? (
+        <CountriesContainerShimmer></CountriesContainerShimmer>
+      ) : (
+        <div className="countries-container">
+          {countriesData
+            .filter(
+              (country) =>
+                country.name.common.toLowerCase().includes(query) ||
+                country.region.toLowerCase().includes(query)
+            )
+            .map((country, index) => {
+              return (
+                <CountryCard
+                  key={index}
+                  name={country.name.common}
+                  flags={country.flags.png}
+                  population={country.population.toLocaleString("en-IN")}
+                  region={country.region}
+                  capital={country.capital?.[0]}
+                ></CountryCard>
+              );
+            })}
+        </div>
+      )}
+    </>
   );
 };
 
