@@ -1,18 +1,13 @@
-import { useState } from "react";
+import { useTheme } from "../hooks/useTheme";
+
+
 
 const Header = () => {
-  const [isdark, setIsdark] = useState(
-    JSON.parse(localStorage.getItem("isdarkmode"))
-  );
+  const [isdark, setIsDark] = useTheme();
 
-  if (isdark) {
-    document.body.classList.add("dark");
-  } else {
-    document.body.classList.remove("dark");
-  }
   return (
     <>
-      <header className={"header-container"}>
+      <header className={`header-container ${isdark? 'dark': ''}`}>
         <div className="header-content">
           <h2>
             <a href="/">Where in the world</a>
@@ -20,7 +15,7 @@ const Header = () => {
           <p
             className="theme-changer"
             onClick={() => {
-              setIsdark(!isdark);
+              setIsDark(!isdark);
               localStorage.setItem("isdarkmode", !isdark);
             }}
           >

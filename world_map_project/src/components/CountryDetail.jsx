@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import "../components/CountryDetail.css";
 import { useParams,Link } from "react-router-dom";
+import { useTheme } from "../hooks/useTheme";
+
 const CountryDetail = () => {
   const params = useParams();
   const countryName = params.countryDetail;
-
+  const [isDark] = useTheme();
   const [countryData, setCountryData] = useState(null);
   const [notfound, setNotFound] = useState(false);
   useEffect(() => {
@@ -62,7 +64,7 @@ const CountryDetail = () => {
     "loading....."
   ) : (
     <>
-      <main>
+      <main className={`${isDark? 'dark': ''}`}>
         <div className="country-details-container">
           <span className="back-button" onClick={() => history.back()}>
             <i className="fa-solid fa-arrow-left"></i>&nbsp; Back

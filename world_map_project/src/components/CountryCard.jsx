@@ -3,8 +3,12 @@ const CountryCard = ({ name, flags, population, region, capital }) => {
   return (
     <>
       <Link className="country-card" to={`/${name}`}>
-        <img src={flags} alt={name + `flags`}></img>
-        <div className="carsd-text">
+        <div className="flag-container">
+          {" "}
+          <img src={flags} alt={name + `flags`}></img>
+        </div>
+
+        <div className="card-text ">
           <h3 className="card-title">{name}</h3>
           <p>
             <b>Population:</b>
