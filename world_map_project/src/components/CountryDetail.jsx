@@ -26,7 +26,7 @@ const CountryDetail = () => {
           flag: data.flags.png,
         })
       )
-      .catch((err) => setNotFound(true));
+      .catch(() => setNotFound(true));
   }, []);
 
   if (notfound) {
