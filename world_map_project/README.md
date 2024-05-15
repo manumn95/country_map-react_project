@@ -14,4 +14,4 @@ This project is completed using react.js
 ![alt text](image-1.png)
 ![alt text](image-2.png)
 
-**Live** "https://country-map-project.netlify.app"
+**Live** "https://country-map-react-project.vercel.app/"
